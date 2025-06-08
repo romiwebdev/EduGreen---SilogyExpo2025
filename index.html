@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduGreen - Edukasi Lingkungan Berbasis Teknologi</title>
+    <meta name="description" content="EduGreen adalah platform interaktif untuk edukasi lingkungan hidup dengan solusi berbasis teknologi seperti kalkulator jejak karbon dan tantangan daur ulang." />
+    <meta name="keywords" content="edukasi lingkungan, teknologi hijau, daur ulang, kalkulator karbon, edukasi interaktif, sustainability, EduGreen" />
+    <meta name="author" content="EduGreen Team" />
+  
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:title" content="EduGreen - Edukasi Lingkungan Berbasis Teknologi" />
+    <meta property="og:description" content="Platform edukasi berbasis web yang mendorong gaya hidup berkelanjutan melalui kalkulator karbon, tantangan daur ulang, dan komunitas." />
+    <meta property="og:image" content="https://edugreen.id/og-image.jpg" />
+    <meta property="og:url" content="https://edugreen.id" />
+    <meta property="og:type" content="website" />
+  
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EduGreen - Edukasi Lingkungan Berbasis Teknologi" />
+    <meta name="twitter:description" content="Platform edukasi untuk gaya hidup berkelanjutan. Ikuti tantangan dan hitung jejak karbonmu!" />
+    <meta name="twitter:image" content="https://edugreen.id/og-image.jpg" />
+  
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="assets/site.webmanifest" />
+  
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#2F855A',
+              secondary: '#38A169',
+              accent: '#E6FFFA',
+              dark: '#1A202C',
+            },
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+            },
+            animation: {
+              float: 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+            },
+          },
+        },
+      };
+    </script>
+  
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  
+
+<body class="font-sans bg-gray-50">
+    <!-- Modern & Sustainable Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50 border-b border-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo with sustainability touch -->
+                <a href="#" class="flex items-center group">
+                    <svg class="w-6 h-6 text-emerald-600 group-hover:text-emerald-500 transition-colors" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span
+                        class="ml-2 text-xl font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">EduGreen</span>
+                    <span
+                        class="ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-emerald-100 text-emerald-800">v2.0</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#home"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Beranda</a>
+                    <a href="#features"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Fitur</a>
+                    <a href="#calculator"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Kalkulator</a>
+                    <a href="#challenge"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Challenge</a>
+                    <a href="#about"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Tentang</a>
+
+                    <!-- Sustainability Indicator -->
+                    <div class="ml-4 pl-4 border-l border-gray-200 flex items-center">
+                        <div class="relative">
+                            <div class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse absolute -top-1 -right-1">
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <span class="ml-2 text-xs font-medium text-gray-500">100% Renewable</span>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button
+                    class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none transition duration-150 ease-in-out"
+                    id="menu-btn" aria-label="Main menu">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Modern) -->
+        <div class="md:hidden hidden bg-white/95 backdrop-blur-sm shadow-lg" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Beranda</a>
+                <a href="#features"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Fitur</a>
+                <a href="#calculator"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Kalkulator</a>
+                <a href="#challenge"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Challenge</a>
+                <a href="#about"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Tentang</a>
+            </div>
+            <div class="px-4 py-3 border-t border-gray-200 flex items-center">
+                <svg class="w-5 h-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span class="ml-2 text-sm font-medium text-gray-500">Powered by 100% Renewable Energy</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modern Sustainable Hero Section -->
+    <section id="home" class="pt-20 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-emerald-500 to-teal-600">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+                <!-- Content -->
+                <div class="text-center md:text-left">
+                    <div
+                        class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-white/20 text-white/90 backdrop-blur-sm mb-5">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Tercertifikasi Netral Karbon
+                    </div>
+
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-200 to-white">Masa
+                            Depan Hijau</span><br>
+                        Dimulai Hari Ini
+                    </h1>
+
+                    <p class="text-base md:text-lg text-emerald-100 mb-8 max-w-lg">
+                        Platform edukasi interaktif untuk mengadopsi solusi teknologi hijau dan gaya hidup berkelanjutan
+                        dalam kehidupan sehari-hari.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#calculator"
+                            class="px-6 py-3.5 rounded-lg font-semibold text-emerald-600 bg-white hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            Hitung Jejak Karbon
+                        </a>
+                        <a href="#challenge"
+                            class="px-6 py-3.5 rounded-lg font-semibold text-white border-2 border-white hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            Mulai Challenge
+                        </a>
+                    </div>
+
+                    <div class="mt-10 flex flex-wrap justify-center md:justify-start gap-4 text-sm text-white/80">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>100% Energi Terbarukan</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Dukung Prinsip ESG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="relative">
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl border-4 border-white/20">
+                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            alt="Sustainable future starts with small actions"
+                            class="w-full h-auto object-cover animate-fadeIn" loading="lazy">
+                    </div>
+
+                    <div class="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-3 border border-gray-100">
+                        <div class="flex items-center gap-2">
+                            <div class="h-3 w-3 rounded-full bg-emerald-400 animate-pulse"></div>
+                            <span class="text-xs font-medium text-gray-700">CO₂ Dihemat (Live)</span>
+                        </div>
+                        <div class="text-2xl font-bold text-emerald-600 mt-1">1,248 kg</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Sustainable Features Section -->
+    <section id="features" class="py-16 bg-white/95 backdrop-blur-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <span
+                    class="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-emerald-100 text-emerald-800 mb-4">
+                    <svg class="w-4 h-4 inline mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Fitur Unggulan
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <span
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-teal-600">Kemampuan</span>
+                    EduGreen
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Platform lengkap untuk memahami dan mengurangi jejak karbon Anda
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Feature 1 - Carbon Calculator -->
+                <div
+                    class="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-white to-emerald-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative p-8 h-full flex flex-col">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-500/20 transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Kalkulator Karbon</h3>
+                        <p class="text-gray-600 mb-6">Hitung jejak karbon pribadi Anda berdasarkan transportasi,
+                            konsumsi listrik, pola makan, dan pengelolaan sampah</p>
+                        <div class="mt-auto">
+                            <a href="#calculator" class="inline-flex items-center text-sm font-medium text-emerald-600">
+                                Hitung sekarang
+                                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-400">
+                    </div>
+                </div>
+
+                <!-- Feature 2 - Green Challenge -->
+                <div
+                    class="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-white to-emerald-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative p-8 h-full flex flex-col">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-500/20 transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Green Challenge</h3>
+                        <p class="text-gray-600 mb-6">Tantangan interaktif untuk memilah sampah dengan benar melalui 5
+                            level kesulitan yang semakin menantang</p>
+                        <div class="mt-auto">
+                            <a href="#challenge" class="inline-flex items-center text-sm font-medium text-emerald-600">
+                                Mulai tantangan
+                                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-cyan-400"></div>
+                </div>
+
+                <!-- Feature 3 - Educational Resources -->
+                <div
+                    class="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-white to-emerald-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative p-8 h-full flex flex-col">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-500/20 transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Edukasi Lingkungan</h3>
+                        <p class="text-gray-600 mb-6">Materi pembelajaran tentang keberlanjutan dan tips praktis
+                            mengurangi jejak karbon sehari-hari</p>
+                        <div class="mt-auto">
+                            <a href="#about" class="inline-flex items-center text-sm font-medium text-emerald-600">
+                                Pelajari lebih lanjut
+                                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 to-blue-400"></div>
+                </div>
+            </div>
+
+            <!-- Sustainability Badge -->
+            <div class="mt-16 pt-8 border-t border-gray-100 flex flex-col items-center">
+                <div class="flex items-center justify-center gap-2 mb-3">
+                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                        </path>
+                    </svg>
+                    <span class="text-sm font-medium text-gray-600">Komitmen Berkelanjutan</span>
+                </div>
+                <p class="text-center text-gray-500 max-w-2xl mx-auto text-sm">
+                    Platform kami mendukung penuh Tujuan Pembangunan Berkelanjutan PBB (SDGs), khususnya:
+                    <span class="font-medium text-emerald-600">SDG 4 (Pendidikan Berkualitas), SDG 11 (Kota
+                        Berkelanjutan), dan SDG 13 (Penanganan Perubahan Iklim)</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Carbon Calculator Section - Enhanced Mobile -->
+    <section id="calculator" class="py-12 sm:py-16 bg-gradient-to-b from-white to-emerald-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Title - Improved for Mobile -->
+            <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-emerald-100 text-emerald-800 mb-3 sm:mb-4">
+                    <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Kalkulator Jejak Karbon
+                </span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500">Hitung
+                        Jejak Karbon</span> Anda
+                </h2>
+                <p class="text-base sm:text-lg text-gray-600 px-2 sm:px-0">
+                    Analisis dampak lingkungan aktivitas harian Anda dalam hitungan menit
+                </p>
+            </div>
+
+            <!-- Calculator Container - Improved Mobile Layout -->
+            <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl overflow-hidden max-w-6xl mx-auto">
+                <div class="flex flex-col lg:flex-row">
+                    <!-- Form Input - Stacked on Mobile -->
+                    <div class="p-5 sm:p-6 md:p-8 lg:p-10 bg-white w-full">
+                        <form id="carbon-form" class="space-y-5 sm:space-y-6">
+                            <!-- Transportasi - Improved Mobile Layout -->
+                            <div
+                                class="bg-gray-50 p-4 sm:p-5 rounded-lg sm:rounded-xl border border-gray-200 hover:border-emerald-300 transition-all duration-200">
+                                <label
+                                    class="block text-base sm:text-lg font-medium text-gray-800 mb-1 sm:mb-2">Transportasi</label>
+                                <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">Jenis kendaraan dan jarak
+                                    tempuh mingguan</p>
+                                <select id="vehicle-type"
+                                    class="mb-3 w-full p-2 text-sm border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500">
+                                    <option value="gasoline">Kendaraan Bensin</option>
+                                    <option value="diesel">Kendaraan Diesel</option>
+                                    <option value="electric">Kendaraan Listrik</option>
+                                </select>
+                                <div class="flex items-center space-x-2 sm:space-x-3">
+                                    <input type="range" id="transport-km" min="0" max="1000" value="100"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                                    <div class="flex items-center">
+                                        <input type="number" id="transport-input" min="0" max="1000" value="100"
+                                            class="w-16 sm:w-20 px-2 sm:px-3 py-1.5 border border-gray-300 rounded-lg text-center text-sm focus:ring-2 focus:ring-emerald-500">
+                                        <span class="ml-1 text-xs sm:text-sm font-medium text-gray-700">km/minggu</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Listrik - Improved Mobile Layout -->
+                            <div
+                                class="bg-gray-50 p-4 sm:p-5 rounded-lg sm:rounded-xl border border-gray-200 hover:border-emerald-300 transition-all duration-200">
+                                <label
+                                    class="block text-base sm:text-lg font-medium text-gray-800 mb-1 sm:mb-2">Konsumsi
+                                    Listrik</label>
+                                <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">Rata-rata bulanan dalam kWh</p>
+                                <div class="flex items-center space-x-2 sm:space-x-3">
+                                    <input type="range" id="electricity" min="0" max="3000" value="500"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                                    <div class="flex items-center">
+                                        <input type="number" id="electricity-input" min="0" max="3000" value="500"
+                                            class="w-16 sm:w-20 px-2 sm:px-3 py-1.5 border border-gray-300 rounded-lg text-center text-sm focus:ring-2 focus:ring-emerald-500">
+                                        <span class="ml-1 text-xs sm:text-sm font-medium text-gray-700">kWh/bulan</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pola Makan - Improved Mobile Layout -->
+                            <div
+                                class="bg-gray-50 p-3 sm:p-5 rounded-lg sm:rounded-xl border border-gray-200 hover:border-emerald-300 transition-all duration-200">
+                                <label class="block text-sm sm:text-lg font-medium text-gray-800 mb-1 sm:mb-2">Pola
+                                    Makan</label>
+                                <p class="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4">Frekuensi konsumsi produk
+                                    hewani</p>
+                                <div class="grid grid-cols-4 gap-1 sm:gap-2">
+                                    <button type="button" data-value="0"
+                                        class="diet-option option-btn py-1 sm:py-2 px-1 sm:px-2 rounded-md sm:rounded-lg border border-gray-300 text-3xs sm:text-xs font-medium hover:bg-emerald-50 hover:border-emerald-300">
+                                        Vegan
+                                    </button>
+                                    <button type="button" data-value="3"
+                                        class="diet-option option-btn py-1 sm:py-2 px-1 sm:px-2 rounded-md sm:rounded-lg border border-gray-300 text-3xs sm:text-xs font-medium hover:bg-emerald-50 hover:border-emerald-300">
+                                        Vegetarian
+                                    </button>
+                                    <button type="button" data-value="7"
+                                        class="diet-option option-btn py-1 sm:py-2 px-1 sm:px-2 rounded-md sm:rounded-lg border border-gray-300 text-3xs sm:text-xs font-medium hover:bg-emerald-50 hover:border-emerald-300">
+                                        Seimbang
+                                    </button>
+                                    <button type="button" data-value="14"
+                                        class="diet-option option-btn py-1 sm:py-2 px-1 sm:px-2 rounded-md sm:rounded-lg border border-gray-300 text-3xs sm:text-xs font-medium hover:bg-emerald-50 hover:border-emerald-300">
+                                        Banyak Daging
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Sampah - Improved Mobile Layout -->
+                            <div
+                                class="bg-gray-50 p-4 sm:p-5 rounded-lg sm:rounded-xl border border-gray-200 hover:border-emerald-300 transition-all duration-200">
+                                <label
+                                    class="block text-base sm:text-lg font-medium text-gray-800 mb-1 sm:mb-2">Pengelolaan
+                                    Sampah</label>
+                                <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">Kebiasaan daur ulang rumah
+                                    tangga</p>
+                                <div class="space-y-2 sm:space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs sm:text-sm font-medium text-gray-700">Sampah non daur
+                                            ulang</span>
+                                        <div class="flex items-center">
+                                            <input type="number" id="waste" min="0" max="50" value="5"
+                                                class="w-14 sm:w-16 px-2 sm:px-3 py-1.5 border border-gray-300 rounded-lg text-center text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500">
+                                            <span
+                                                class="ml-1 text-xs sm:text-sm font-medium text-gray-700">kg/minggu</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="recycling"
+                                            class="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded">
+                                        <label for="recycling" class="ml-2 block text-xs sm:text-sm text-gray-700">Rutin
+                                            daur ulang</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="composting"
+                                            class="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded">
+                                        <label for="composting"
+                                            class="ml-2 block text-xs sm:text-sm text-gray-700">Membuat kompos</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Reset Button - Improved Mobile -->
+                            <div class="text-right pt-2">
+                                <button type="button" id="reset-btn"
+                                    class="text-xs sm:text-sm font-medium text-emerald-600 hover:text-emerald-700 flex items-center ml-auto">
+                                    <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-1" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                                        </path>
+                                    </svg>
+                                    Reset Form
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Results Panel - Improved Mobile Layout -->
+                    <div
+                        class="p-5 sm:p-6 md:p-8 lg:p-10 bg-gradient-to-b from-emerald-50 to-white border-t lg:border-t-0 lg:border-l border-gray-200 w-full">
+                        <div id="results" class="space-y-4 sm:space-y-6">
+                            <!-- Total CO2 - Improved Mobile -->
+                            <div
+                                class="bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-xs sm:shadow-sm border border-gray-200">
+                                <!-- CO₂ Equivalent Section - Improved Mobile Layout -->
+                                <div class="flex items-center justify-between mb-2 sm:mb-3">
+                                    <h4 class="text-sm sm:text-base font-medium text-gray-700">Total Jejak Karbon
+                                        Tahunan</h4>
+                                    <span
+                                        class="text-3xs sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-emerald-100 text-emerald-800">CO₂
+                                        Equivalent</span>
+                                </div>
+                                <div class="flex items-end space-x-1 sm:space-x-2">
+                                    <span id="carbon-total"
+                                        class="text-3xl sm:text-4xl font-bold text-gray-900">0</span>
+                                    <span class="text-sm sm:text-lg font-medium text-gray-500 mb-0.5 sm:mb-1">kg</span>
+                                </div>
+                                <div class="mt-2 sm:mt-3">
+                                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                        <div id="carbon-bar"
+                                            class="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full"
+                                            style="width: 0%"></div>
+                                    </div>
+                                    <div class="flex justify-between text-2xs sm:text-xs text-gray-500 mt-1">
+                                        <span>Rendah</span>
+                                        <span>Sedang</span>
+                                        <span>Tinggi</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chart - Improved Mobile -->
+                            <div
+                                class="bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-xs sm:shadow-sm border border-gray-200">
+                                <h4 class="text-sm sm:text-base font-medium text-gray-700 mb-3 sm:mb-4">Detail
+                                    Kontribusi</h4>
+                                <div class="h-48 sm:h-56 md:h-64">
+                                    <canvas id="carbon-chart" width="100%" height="100%"></canvas>
+                                </div>
+                            </div>
+
+                            <!-- Recommendations - Improved Mobile -->
+                            <div
+                                class="bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-xs sm:shadow-sm border border-gray-200">
+                                <h4 class="text-sm sm:text-base font-medium text-gray-700 mb-3 sm:mb-4">Rekomendasi</h4>
+                                <div id="recommendations" class="space-y-2 sm:space-y-3">
+                                    <div class="flex items-start">
+                                        <div class="flex-shrink-0 mt-0.5 sm:mt-1">
+                                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="ml-2 text-xs sm:text-sm text-gray-700">Isi formulir untuk melihat
+                                            rekomendasi personal mengurangi jejak karbon Anda.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-200">
+                                    <button id="share-btn"
+                                        class="w-full flex items-center justify-center px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-300 rounded-lg text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                        <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                                            </path>
+                                        </svg>
+                                        Bagikan Hasil
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eco Quest: Recycle Rush - Fixed Version -->
+    <section id="challenge" class="py-16 bg-gradient-to-b from-emerald-50 to-teal-50 min-h-screen flex items-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header Section -->
+            <div class="text-center mb-12">
+                <span
+                    class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800 mb-4">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                    </svg>
+                    Green Challenge
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500">Eco
+                        Quest:</span> Recycle Rush
+                </h2>
+                <p
+                    class="text-lg text-gray-600 max-w-2xl mx-auto bg-white/70 backdrop-blur-sm rounded-full py-2 px-6 shadow-sm inline-block">
+                    Seret sampah ke tempat yang tepat dan jadi pahlawan lingkungan!
+                </p>
+            </div>
+
+            <!-- Game Container -->
+            <div
+                class="bg-white/90 rounded-2xl shadow-xl overflow-hidden max-w-4xl mx-auto border border-white/20 backdrop-blur-sm">
+                <!-- Game Header -->
+                <div class="bg-gradient-to-r from-emerald-500 to-teal-500 p-4 text-white text-center">
+                    <h3 class="text-xl font-bold">Tantangan Daur Ulang</h3>
+                </div>
+
+                <!-- Game Body -->
+                <div class="p-6 md:p-8">
+                    <!-- Level Info -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-emerald-100 p-2 rounded-lg">
+                                <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <label for="level-select" class="block text-sm font-medium text-gray-500">Level</label>
+                                <select id="level-select"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md bg-white border">
+                                    <option value="1">Pemula</option>
+                                    <option value="2">Pemula Lanjut</option>
+                                    <option value="3">Menengah</option>
+                                    <option value="4">Mahir</option>
+                                    <option value="5">Legenda</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="text-center">
+                                <span class="block text-sm font-medium text-gray-500">Skor</span>
+                                <span id="score" class="text-xl font-bold text-emerald-600">0</span>
+                                <span class="text-gray-400">/</span>
+                                <span id="total-items" class="text-xl font-bold text-gray-700">0</span>
+                            </div>
+
+                            <div class="text-center">
+                                <span class="block text-sm font-medium text-gray-500">Waktu</span>
+                                <span id="timer" class="text-xl font-bold text-red-500">60</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bins Area -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                        <div class="bin organic" data-type="organic">
+                            <div
+                                class="bin-container bg-green-50 border-2 border-green-200 rounded-xl p-4 text-center transition-all hover:border-green-400 hover:shadow-md">
+                                <div
+                                    class="bin-icon w-14 h-14 mx-auto bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-2">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                    </svg>
+                                </div>
+                                <div class="bin-label font-medium text-green-800">Organik</div>
+                                <div class="bin-count text-xs text-green-600 mt-1">(<span>0</span> item)</div>
+                            </div>
+                        </div>
+
+                        <div class="bin plastic" data-type="plastic">
+                            <div
+                                class="bin-container bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center transition-all hover:border-blue-400 hover:shadow-md">
+                                <div
+                                    class="bin-icon w-14 h-14 mx-auto bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-2">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="bin-label font-medium text-blue-800">Plastik</div>
+                                <div class="bin-count text-xs text-blue-600 mt-1">(<span>0</span> item)</div>
+                            </div>
+                        </div>
+
+                        <div class="bin paper" data-type="paper">
+                            <div
+                                class="bin-container bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4 text-center transition-all hover:border-yellow-400 hover:shadow-md">
+                                <div
+                                    class="bin-icon w-14 h-14 mx-auto bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600 mb-2">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="bin-label font-medium text-yellow-800">Kertas</div>
+                                <div class="bin-count text-xs text-yellow-600 mt-1">(<span>0</span> item)</div>
+                            </div>
+                        </div>
+
+                        <div class="bin metal" data-type="metal">
+                            <div
+                                class="bin-container bg-purple-50 border-2 border-purple-200 rounded-xl p-4 text-center transition-all hover:border-purple-400 hover:shadow-md">
+                                <div
+                                    class="bin-icon w-14 h-14 mx-auto bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-2">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                    </svg>
+                                </div>
+                                <div class="bin-label font-medium text-purple-800">Logam</div>
+                                <div class="bin-count text-xs text-purple-600 mt-1">(<span>0</span> item)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="mb-8">
+                        <div class="flex justify-between text-sm text-gray-500 mb-1">
+                            <span>Progress</span>
+                            <span id="progress-percent">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div id="progress-bar"
+                                class="bg-gradient-to-r from-emerald-400 to-teal-500 h-2.5 rounded-full transition-all duration-500"
+                                style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Trash Items Area -->
+                    <div id="trash-items"
+                        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 min-h-[200px] mb-8 bg-gray-50/50 rounded-xl p-4 border border-gray-200/30">
+                        <!-- Items will be generated by JavaScript -->
+                        <div class="col-span-full flex flex-col items-center justify-center text-gray-400 py-10">
+                            <svg class="w-12 h-12 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            <p>Pilih level untuk memulai tantangan</p>
+                        </div>
+                    </div>
+
+                    <!-- Game Controls -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-3">
+                        <button id="start-game"
+                            class="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Mulai Tantangan
+                        </button>
+                        <button id="reset-game"
+                            class="px-6 py-3 rounded-lg font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                                </path>
+                            </svg>
+                            Ulangi Level
+                        </button>
+                    </div>
+
+                    <!-- Game Message -->
+                    <div id="message" class="text-center mt-4 text-sm text-gray-500 italic"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Sustainable About Section -->
+    <section id="about" class="py-16 bg-gradient-to-b from-white to-emerald-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <span
+                    class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800 mb-4">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Tentang Kami
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500">Misi
+                        Hijau</span> Kami
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Mengubah kesadaran lingkungan menjadi aksi nyata melalui inovasi teknologi yang berdampak
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                    <!-- Visual Section -->
+                    <div class="relative bg-gradient-to-br from-emerald-50 to-teal-50 p-8 md:p-12">
+                        <div class="relative z-10">
+                            <div class="mb-8">
+                                <div
+                                    class="w-16 h-16 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 mb-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3">Visi Kami</h3>
+                                <p class="text-gray-600">Menciptakan generasi yang sadar lingkungan melalui pendidikan
+                                    digital yang menarik dan berdampak nyata</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-gray-200">
+                                    <div class="text-emerald-600 text-2xl mb-2">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-medium text-gray-900 mb-1">10K+</h4>
+                                    <p class="text-xs text-gray-500">Pengguna aktif</p>
+                                </div>
+                                <div class="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-gray-200">
+                                    <div class="text-emerald-600 text-2xl mb-2">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-medium text-gray-900 mb-1">5K+</h4>
+                                    <p class="text-xs text-gray-500">Challenge diselesaikan</p>
+                                </div>
+                                <div class="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-gray-200">
+                                    <div class="text-emerald-600 text-2xl mb-2">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-medium text-gray-900 mb-1">1.2K+</h4>
+                                    <p class="text-xs text-gray-500">Ton CO2 berkurang</p>
+                                </div>
+                                <div class="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-gray-200">
+                                    <div class="text-emerald-600 text-2xl mb-2">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-medium text-gray-900 mb-1">50+</h4>
+                                    <p class="text-xs text-gray-500">Sekolah berpartisipasi</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute bottom-0 right-0 w-32 h-32 bg-emerald-200 rounded-full opacity-20 -mr-16 -mb-16">
+                        </div>
+                        <div class="absolute top-0 left-0 w-24 h-24 bg-teal-200 rounded-full opacity-20 -ml-12 -mt-12">
+                        </div>
+                    </div>
+
+                    <!-- Content Section -->
+                    <div class="p-8 md:p-12">
+                        <div class="prose max-w-none">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Menggabungkan Teknologi & Keberlanjutan
+                            </h3>
+
+                            <p class="text-gray-600 mb-4">EduGreen lahir dari keyakinan bahwa <strong
+                                    class="text-emerald-600">pendidikan lingkungan</strong> harus mudah diakses,
+                                menarik, dan berdampak nyata. Kami menghadirkan solusi digital inovatif yang mengubah
+                                pengetahuan menjadi tindakan konkret.</p>
+
+                            <div class="border-l-4 border-emerald-500 pl-4 my-6">
+                                <p class="text-gray-700 italic">"Setiap individu memiliki peran dalam menciptakan masa
+                                    depan berkelanjutan. Teknologi adalah alat ampuh untuk mempercepat perubahan ini."
+                                </p>
+                            </div>
+
+                            <h4 class="font-bold text-gray-900 mb-3 mt-6">Pendekatan Unik Kami:</h4>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span><strong>Gamifikasi Pembelajaran</strong> - Mengubah edukasi menjadi pengalaman
+                                        interaktif yang menyenangkan</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span><strong>Data Real-time</strong> - Visualisasi dampak yang mudah dipahami dan
+                                        relevan</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span><strong>Komunitas Hijau</strong> - Wadah kolaborasi untuk perubahan
+                                        berkelanjutan</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span><strong>Teknologi Ramah Lingkungan</strong> - Platform kami dihosting di
+                                        server dengan energi terbarukan</span>
+                                </li>
+                            </ul>
+
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-4">Didukung Oleh:</h4>
+                                <div class="flex flex-wrap items-center gap-4">
+                                    <img src="https://via.placeholder.com/120x60?text=UCDC+2025" alt="UCDC 2025"
+                                        class="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity">
+                                    <img src="https://via.placeholder.com/120x60?text=GreenTech" alt="GreenTech"
+                                        class="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity">
+                                    <img src="https://via.placeholder.com/120x60?text=Edu+Foundation"
+                                        alt="Edu Foundation"
+                                        class="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Modern Sustainable Footer -->
+    <footer class="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Logo and Description -->
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <svg class="w-8 h-8 text-emerald-400 mr-2" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <span
+                            class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">EduGreen</span>
+                    </div>
+                    <p class="text-gray-400">Mempowering sustainable futures through technology and education</p>
+
+                    <!-- Sustainability Badge -->
+                    <div class="flex items-center mt-4">
+                        <svg class="w-5 h-5 text-emerald-400 mr-2" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                            </path>
+                        </svg>
+                        <span
+                            class="text-xs font-medium bg-emerald-900/50 text-emerald-400 px-2 py-1 rounded-full">Carbon
+                            Neutral Platform</span>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Navigasi</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">Beranda</a>
+                        </li>
+                        <li><a href="#features"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">Fitur</a>
+                        </li>
+                        <li><a href="#calculator"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">Kalkulator
+                                Karbon</a></li>
+                        <li><a href="#challenge"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">Green
+                                Challenge</a></li>
+                        <li><a href="#about"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">Tentang
+                                Kami</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Sumber Daya</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">Blog</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">Panduan Daur
+                                Ulang</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">Kalkulator
+                                Jejak Ekologis</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-emerald-400 transition-colors duration-200">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Social -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-white">Hubungi Kami</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-gray-400">
+                            <svg class="w-5 h-5 mr-2 text-emerald-400" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <span>hello@edugreen.id</span>
+                        </div>
+                        <div class="flex items-center text-gray-400">
+                            <svg class="w-5 h-5 mr-2 text-emerald-400" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>STMIK AMIKOM Surakarta</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <h4 class="text-sm font-medium text-white mb-3">Ikuti Kami</h4>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-800 hover:bg-emerald-600 transition-colors duration-200 flex items-center justify-center text-gray-300 hover:text-white">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-800 hover:bg-emerald-600 transition-colors duration-200 flex items-center justify-center text-gray-300 hover:text-white">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-800 hover:bg-emerald-600 transition-colors duration-200 flex items-center justify-center text-gray-300 hover:text-white">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 3.807.058h.468c2.456 0 2.784-.011 3.807-.058.975-.045 1.504-.207 1.857-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-3.807v-.468c0-2.456-.011-2.784-.058-3.807-.045-.975-.207-1.504-.344-1.857a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-800 hover:bg-emerald-600 transition-colors duration-200 flex items-center justify-center text-gray-300 hover:text-white">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-sm text-gray-400 mb-4 md:mb-0">
+                        &copy; 2025 EduGreen. All rights reserved.
+                        <span class="block sm:inline">Dibuat dengan <span class="text-emerald-400">♡</span> untuk UCDC
+                            2025 - STMIK AMIKOM Surakarta</span>
+                    </p>
+
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#" class="text-xs text-gray-400 hover:text-emerald-400 transition-colors">Privacy
+                            Policy</a>
+                        <a href="#" class="text-xs text-gray-400 hover:text-emerald-400 transition-colors">Terms of
+                            Service</a>
+                        <a href="#" class="text-xs text-gray-400 hover:text-emerald-400 transition-colors">Cookie
+                            Policy</a>
+                        <a href="#"
+                            class="text-xs text-gray-400 hover:text-emerald-400 transition-colors">Sustainability
+                            Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top"
+        class="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-secondary transition duration-300 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- Tippy.js for tooltips -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <!-- chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Calculator -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM Elements
+            const form = document.getElementById('carbon-form');
+            const vehicleType = document.getElementById('vehicle-type');
+            const transportInput = document.getElementById('transport-input');
+            const transportSlider = document.getElementById('transport-km');
+            const electricityInput = document.getElementById('electricity-input');
+            const electricitySlider = document.getElementById('electricity');
+            const wasteInput = document.getElementById('waste');
+            const recycling = document.getElementById('recycling');
+            const composting = document.getElementById('composting');
+            const resetBtn = document.getElementById('reset-btn');
+            const shareBtn = document.getElementById('share-btn');
+
+            let carbonChart = null;
+            const AVERAGE_CARBON = 12000; // kg/year
+
+            // Event Listeners
+            function initEvents() {
+                transportSlider.addEventListener('input', updateTransport);
+                transportInput.addEventListener('input', updateTransport);
+
+                electricitySlider.addEventListener('input', updateElectricity);
+                electricityInput.addEventListener('input', updateElectricity);
+
+                wasteInput.addEventListener('input', calculateFootprint);
+                recycling.addEventListener('change', calculateFootprint);
+                composting.addEventListener('change', calculateFootprint);
+                vehicleType.addEventListener('change', calculateFootprint);
+
+                document.querySelectorAll('.diet-option').forEach(btn => {
+                    btn.addEventListener('click', selectDiet);
+                });
+
+                resetBtn.addEventListener('click', resetForm);
+                shareBtn.addEventListener('click', shareResults);
+            }
+
+            function updateTransport() {
+                transportInput.value = transportSlider.value;
+                transportSlider.value = transportInput.value;
+                calculateFootprint();
+            }
+
+            function updateElectricity() {
+                electricityInput.value = electricitySlider.value;
+                electricitySlider.value = electricityInput.value;
+                calculateFootprint();
+            }
+
+            function selectDiet(e) {
+                document.querySelectorAll('.diet-option').forEach(b => b.classList.remove('bg-emerald-100', 'border-emerald-400', 'text-emerald-800'));
+                e.target.classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-800');
+                calculateFootprint();
+            }
+
+            function resetForm() {
+                transportSlider.value = 100;
+                transportInput.value = 100;
+                electricitySlider.value = 500;
+                electricityInput.value = 500;
+                wasteInput.value = 5;
+                recycling.checked = false;
+                composting.checked = false;
+                vehicleType.value = 'gasoline';
+                document.querySelectorAll('.diet-option').forEach(b => b.classList.remove('bg-emerald-100', 'border-emerald-400', 'text-emerald-800'));
+                document.querySelector('.diet-option[data-value="7"]').classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-800');
+                calculateFootprint();
+            }
+
+            function shareResults() {
+                const total = document.getElementById('carbon-total').textContent;
+                const text = `Jejak karbon saya: ${total} kg CO₂/tahun. Hitung jejak karbon Anda di ${window.location.href}`;
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Hasil Jejak Karbon Saya',
+                        text: text,
+                        url: window.location.href,
+                    }).catch(console.error);
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert("Hasil telah disalin ke clipboard!");
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                } else {
+                    prompt("Salin teks berikut untuk berbagi:", text);
+                }
+            }
+
+            function calculateFootprint() {
+                const km = parseFloat(transportInput.value) || 0;
+                const kWh = parseFloat(electricityInput.value) || 0;
+                const waste = parseFloat(wasteInput.value) || 0;
+
+                const emissionFactors = {
+                    gasoline: 0.12,  // kg CO2 per km
+                    diesel: 0.14,    // kg CO2 per km
+                    electric: 0.05   // kg CO2 per km (asumsi listrik masih campuran)
+                };
+                const vehicle = vehicleType.value;
+
+                // Get selected diet
+                const dietOption = document.querySelector('.diet-option.bg-emerald-100');
+                const dietValue = dietOption ? parseInt(dietOption.dataset.value) : 7;
+                const dietFactor = dietValue * 2.5 * 52; // kg/year (2.5 kg CO2 per meat meal per week)
+
+                const transportEmission = km * emissionFactors[vehicle] * 52; // kg/year
+                const electricityEmission = kWh * 0.85 * 12; // kg/year (0.85 kg CO2 per kWh)
+                let wasteEmission = waste * 0.5 * 52; // kg/year (0.5 kg CO2 per kg waste)
+
+                // Apply waste reduction factors
+                if (recycling.checked) wasteEmission *= 0.7; // 30% reduction
+                if (composting.checked) wasteEmission *= 0.6; // 40% reduction
+
+                const total = transportEmission + electricityEmission + wasteEmission + dietFactor;
+                updateResults(total, transportEmission, electricityEmission, wasteEmission, dietFactor);
+            }
+
+            function updateResults(total, transport, electricity, waste, diet) {
+                document.getElementById('carbon-total').textContent = Math.round(total).toLocaleString();
+                const percent = Math.min((total / 20000) * 100, 100); // Cap at 20,000 kg
+                document.getElementById('carbon-bar').style.width = `${percent}%`;
+                generateRecommendations(total, transport, electricity, waste, diet);
+                updateChart(transport, electricity, waste, diet);
+            }
+
+            function updateChart(transport, electricity, waste, diet) {
+                const ctx = document.getElementById('carbon-chart').getContext('2d');
+                if (carbonChart) carbonChart.destroy();
+
+                carbonChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Transportasi', 'Listrik', 'Sampah', 'Makanan'],
+                        datasets: [{
+                            data: [transport, electricity, waste, diet],
+                            backgroundColor: [
+                                'rgba(16, 185, 129, 0.8)',
+                                'rgba(6, 182, 212, 0.8)',
+                                'rgba(245, 158, 11, 0.8)',
+                                'rgba(139, 92, 246, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(16, 185, 129, 1)',
+                                'rgba(6, 182, 212, 1)',
+                                'rgba(245, 158, 11, 1)',
+                                'rgba(139, 92, 246, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: window.innerWidth < 640 ? 'bottom' : 'right',
+                                labels: {
+                                    padding: 10,
+                                    usePointStyle: true,
+                                    font: {
+                                        size: window.innerWidth < 640 ? 10 : 12
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const label = context.label || '';
+                                        const value = context.raw || 0;
+                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                        const percentage = Math.round((value / total) * 100);
+                                        return `${label}: ${Math.round(value).toLocaleString()} kg (${percentage}%)`;
+                                    }
+                                },
+                                bodyFont: {
+                                    size: window.innerWidth < 640 ? 10 : 12
+                                }
+                            }
+                        },
+                        cutout: window.innerWidth < 640 ? '60%' : '70%'
+                    }
+                });
+            }
+
+            function generateRecommendations(total, transport, electricity, waste, diet) {
+                const recs = document.getElementById('recommendations');
+                recs.innerHTML = '';
+
+                const addRec = (text) => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-start';
+                    div.innerHTML = `
+                    <div class="flex-shrink-0 mt-0.5 sm:mt-1">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <p class="ml-2 text-xs sm:text-sm text-gray-700">${text}</p>
+                `;
+                    recs.appendChild(div);
+                };
+
+                // Always show general recommendation
+                addRec('Mulai dengan langkah kecil - setiap pengurangan 1,000 kg CO₂ sama dengan menanam sekitar 50 pohon.');
+
+                // Transport recommendations
+                if (transport > total * 0.35) {
+                    addRec('Gunakan transportasi umum 1-2 hari/minggu bisa mengurangi emisi transportasi hingga 20%.');
+                    if (vehicleType.value === 'gasoline' || vehicleType.value === 'diesel') {
+                        addRec('Pertimbangkan kendaraan listrik atau hybrid untuk penghematan jangka panjang.');
+                    }
+                }
+
+                // Electricity recommendations
+                if (electricity > total * 0.3) {
+                    addRec('Ganti 5 lampu utama dengan LED hemat energi bisa menghemat hingga 500 kWh/tahun.');
+                    addRec('Atur AC pada 24°C dan gunakan timer untuk menghemat hingga 30% konsumsi listrik AC.');
+                }
+
+                // Waste recommendations
+                if (waste > total * 0.15) {
+                    addRec('Daur ulang 1 kg sampah plastik menghemat energi setara dengan 3 jam menyalakan TV.');
+
+                    if (!composting.checked) {
+                        addRec('Kompos sampah organik bisa mengurangi emisi metana dan menghasilkan pupuk alami.');
+                    }
+
+                    if (!recycling.checked) {
+                        addRec('Mulai pilah sampah daur ulang - Indonesia hanya mendaur ulang 11% sampahnya.');
+                    }
+                }
+
+                // Diet recommendations
+                if (diet > total * 0.25) {
+                    addRec('1 hari tanpa daging per minggu bisa menghemat 230 kg CO₂/tahun.');
+                    addRec('Produk lokal dan musiman memiliki jejak karbon 5-10x lebih kecil daripada impor.');
+                }
+
+                // Offset recommendation
+                addRec('Pertimbangkan offset karbon melalui program penanaman pohon terverifikasi.');
+            }
+
+            // Initialize
+            initEvents();
+            resetForm();
+
+            // Handle window resize for chart
+            window.addEventListener('resize', function () {
+                if (carbonChart) {
+                    carbonChart.destroy();
+                    calculateFootprint();
+                }
+            });
+        });
+    </script>
+
+    <!-- Challenge -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Game Elements
+            const levelSelect = document.getElementById('level-select');
+            const startBtn = document.getElementById('start-game');
+            const resetBtn = document.getElementById('reset-game');
+            const trashItemsContainer = document.getElementById('trash-items');
+            const scoreElement = document.getElementById('score');
+            const totalItemsElement = document.getElementById('total-items');
+            const timerElement = document.getElementById('timer');
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercent = document.getElementById('progress-percent');
+            const messageElement = document.getElementById('message');
+            const binCountElements = document.querySelectorAll('.bin-count span');
+
+            // Game Data
+            const gameData = {
+                currentLevel: 1,
+                score: 0,
+                totalItems: 0,
+                timeLeft: 60,
+                timer: null,
+                isGameRunning: false,
+                items: [],
+                levels: {
+                    1: {
+                        title: "Pemula",
+                        description: "Dasar-dasar daur ulang",
+                        time: 60,
+                        items: [
+                            { name: "Kulit Pisang", type: "organic", icon: "🍌" },
+                            { name: "Botol Plastik", type: "plastic", icon: "🧴" },
+                            { name: "Koran", type: "paper", icon: "📰" },
+                            { name: "Kaleng Minuman", type: "metal", icon: "🥫" }
+                        ]
+                    },
+                    2: {
+                        title: "Pemula Lanjut",
+                        description: "Sampah rumah tangga umum",
+                        time: 50,
+                        items: [
+                            { name: "Sisa Sayuran", type: "organic", icon: "🥕" },
+                            { name: "Kantong Plastik", type: "plastic", icon: "🛍️" },
+                            { name: "Kardus", type: "paper", icon: "📦" },
+                            { name: "Kaleng Susu", type: "metal", icon: "🥛" },
+                            { name: "Kulit Telur", type: "organic", icon: "🥚" }
+                        ]
+                    },
+                    3: {
+                        title: "Menengah",
+                        description: "Campuran sampah sehari-hari",
+                        time: 45,
+                        items: [
+                            { name: "Ampas Kopi", type: "organic", icon: "☕" },
+                            { name: "Sedotan Plastik", type: "plastic", icon: "🥤" },
+                            { name: "Buku Bekas", type: "paper", icon: "📚" },
+                            { name: "Sendok Logam", type: "metal", icon: "🥄" },
+                            { name: "Sisa Makanan", type: "organic", icon: "🍽️" },
+                            { name: "Tutup Botol Plastik", type: "plastic", icon: "🧴" }
+                        ]
+                    },
+                    4: {
+                        title: "Mahir",
+                        description: "Sampah yang lebih kompleks",
+                        time: 40,
+                        items: [
+                            { name: "Daun Teh", type: "organic", icon: "🍃" },
+                            { name: "Wadah Makanan Plastik", type: "plastic", icon: "🍱" },
+                            { name: "Kertas HVS", type: "paper", icon: "📄" },
+                            { name: "Garpu Logam", type: "metal", icon: "🍴" },
+                            { name: "Biji Buah", type: "organic", icon: "🍒" },
+                            { name: "Bungkus Snack", type: "plastic", icon: "🍫" },
+                            { name: "Tisu Kertas", type: "paper", icon: "🧻" }
+                        ]
+                    },
+                    5: {
+                        title: "Legenda",
+                        description: "Semua jenis sampah",
+                        time: 35,
+                        items: [
+                            { name: "Kulit Buah", type: "organic", icon: "🍎" },
+                            { name: "Gelas Plastik", type: "plastic", icon: "🥤" },
+                            { name: "Kertas Kado", type: "paper", icon: "🎁" },
+                            { name: "Kaleng Cat", type: "metal", icon: "🎨" },
+                            { name: "Tangkai Sayur", type: "organic", icon: "🥦" },
+                            { name: "Botol Shampoo", type: "plastic", icon: "🧴" },
+                            { name: "Kardus Telur", type: "paper", icon: "📦" },
+                            { name: "Panci Rusak", type: "metal", icon: "🍳" }
+                        ]
+                    }
+                }
+            };
+
+            // Initialize game
+            initGame();
+
+            // Event Listeners
+            levelSelect.addEventListener('change', function () {
+                gameData.currentLevel = parseInt(this.value);
+                resetGameState();
+            });
+
+            startBtn.addEventListener('click', startGame);
+            resetBtn.addEventListener('click', resetGame);
+
+            // Initialize drag and drop
+            initDragAndDrop();
+
+            // Functions
+            function initGame() {
+                // Set default level to 1
+                gameData.currentLevel = 1;
+                levelSelect.value = 1;
+                resetGameState();
+            }
+
+            function resetGameState() {
+                clearInterval(gameData.timer);
+                gameData.isGameRunning = false;
+                gameData.score = 0;
+                gameData.totalItems = 0;
+
+                // Reset UI
+                scoreElement.textContent = '0';
+                totalItemsElement.textContent = '0';
+                timerElement.textContent = gameData.levels[gameData.currentLevel].time;
+                progressBar.style.width = '0%';
+                progressPercent.textContent = '0%';
+
+                // Reset bin counts
+                binCountElements.forEach(el => el.textContent = '0');
+
+                // Show start button
+                startBtn.classList.remove('hidden');
+                resetBtn.classList.add('hidden');
+                messageElement.textContent = '';
+
+                // Show preview items
+                previewItems();
+            }
+
+            function previewItems() {
+                trashItemsContainer.innerHTML = '';
+                const items = gameData.levels[gameData.currentLevel].items;
+
+                items.forEach((item, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'trash-item bg-white rounded-lg p-3 text-center shadow-sm border border-gray-200 cursor-grab flex flex-col items-center justify-center';
+                    itemElement.dataset.type = item.type;
+                    itemElement.dataset.name = item.name;
+                    itemElement.dataset.index = index;
+                    itemElement.draggable = false;
+
+                    itemElement.innerHTML = `
+                    <div class="text-3xl mb-1">${item.icon}</div>
+                    <div class="text-xs font-medium text-gray-700 truncate">${item.name}</div>
+                `;
+
+                    trashItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            function startGame() {
+                if (gameData.isGameRunning) return;
+
+                gameData.isGameRunning = true;
+                gameData.score = 0;
+                gameData.totalItems = gameData.levels[gameData.currentLevel].items.length;
+                gameData.timeLeft = gameData.levels[gameData.currentLevel].time;
+                gameData.items = [...gameData.levels[gameData.currentLevel].items];
+
+                // Update UI
+                scoreElement.textContent = gameData.score;
+                totalItemsElement.textContent = gameData.totalItems;
+                timerElement.textContent = gameData.timeLeft;
+                progressBar.style.width = '0%';
+                progressPercent.textContent = '0%';
+
+                // Reset bin counts
+                binCountElements.forEach(el => el.textContent = '0');
+
+                // Generate draggable items
+                generateItems();
+
+                // Start timer
+                startTimer();
+
+                // Show reset button
+                resetBtn.classList.remove('hidden');
+                startBtn.classList.add('hidden');
+                messageElement.textContent = '';
+            }
+
+            function generateItems() {
+                trashItemsContainer.innerHTML = '';
+
+                // Shuffle items
+                const shuffledItems = [...gameData.items].sort(() => Math.random() - 0.5);
+
+                shuffledItems.forEach((item, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'trash-item bg-white rounded-lg p-3 text-center shadow-md border border-gray-200 cursor-grab hover:shadow-lg transition-shadow flex flex-col items-center justify-center';
+                    itemElement.dataset.type = item.type;
+                    itemElement.dataset.name = item.name;
+                    itemElement.dataset.index = index;
+                    itemElement.draggable = true;
+
+                    itemElement.innerHTML = `
+                    <div class="text-3xl mb-1">${item.icon}</div>
+                    <div class="text-xs font-medium text-gray-700 truncate">${item.name}</div>
+                `;
+
+                    trashItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            function startTimer() {
+                clearInterval(gameData.timer);
+
+                gameData.timer = setInterval(() => {
+                    gameData.timeLeft--;
+                    timerElement.textContent = gameData.timeLeft;
+
+                    if (gameData.timeLeft <= 0) {
+                        endGame(false);
+                    }
+                }, 1000);
+            }
+
+            function initDragAndDrop() {
+                // Setup draggable items
+                document.addEventListener('dragstart', function (e) {
+                    if (e.target.classList.contains('trash-item') && gameData.isGameRunning) {
+                        e.dataTransfer.setData('text/plain', JSON.stringify({
+                            index: e.target.dataset.index,
+                            type: e.target.dataset.type,
+                            name: e.target.dataset.name
+                        }));
+                        setTimeout(() => {
+                            e.target.classList.add('opacity-0');
+                        }, 0);
+                    }
+                });
+
+                document.addEventListener('dragend', function (e) {
+                    if (e.target.classList.contains('trash-item')) {
+                        e.target.classList.remove('opacity-0');
+                    }
+                });
+
+                // Setup droppable bins
+                document.querySelectorAll('.bin').forEach(bin => {
+                    bin.addEventListener('dragover', function (e) {
+                        if (gameData.isGameRunning) {
+                            e.preventDefault();
+                            this.querySelector('.bin-container').classList.add('border-2', 'border-emerald-500', 'bg-white');
+                        }
+                    });
+
+                    bin.addEventListener('dragleave', function () {
+                        this.querySelector('.bin-container').classList.remove('border-2', 'border-emerald-500', 'bg-white');
+                    });
+
+                    bin.addEventListener('drop', function (e) {
+                        if (gameData.isGameRunning) {
+                            e.preventDefault();
+                            this.querySelector('.bin-container').classList.remove('border-2', 'border-emerald-500', 'bg-white');
+
+                            const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                            const itemIndex = data.index;
+                            const itemType = data.type;
+                            const itemName = data.name;
+                            const binType = this.dataset.type;
+
+                            // Validate item type matches bin type
+                            const isCorrect = itemType === binType;
+
+                            if (isCorrect) {
+                                // Correct bin
+                                gameData.score++;
+                                scoreElement.textContent = gameData.score;
+
+                                // Update progress
+                                const progress = Math.round((gameData.score / gameData.totalItems) * 100);
+                                progressBar.style.width = `${progress}%`;
+                                progressPercent.textContent = `${progress}%`;
+
+                                // Update bin count
+                                const binIndex = Array.from(document.querySelectorAll('.bin')).indexOf(this);
+                                const count = parseInt(binCountElements[binIndex].textContent) + 1;
+                                binCountElements[binIndex].textContent = count;
+
+                                // Remove item from DOM
+                                const items = document.querySelectorAll('.trash-item');
+                                items.forEach(item => {
+                                    if (item.dataset.index === itemIndex) {
+                                        item.remove();
+                                    }
+                                });
+
+                                // Check if all items are sorted
+                                if (gameData.score === gameData.totalItems) {
+                                    endGame(true);
+                                }
+                            } else {
+                                // Wrong bin - show feedback
+                                const items = document.querySelectorAll('.trash-item');
+                                items.forEach(item => {
+                                    if (item.dataset.index === itemIndex) {
+                                        item.classList.add('border-red-500', 'animate-pulse');
+                                        setTimeout(() => {
+                                            item.classList.remove('border-red-500', 'animate-pulse');
+                                        }, 1000);
+                                    }
+                                });
+                                messageElement.textContent = `Oops! "${itemName}" seharusnya di tempat ${itemType}`;
+                                setTimeout(() => {
+                                    messageElement.textContent = '';
+                                }, 2000);
+                            }
+                        }
+                    });
+                });
+            }
+
+            function endGame(isWin) {
+                clearInterval(gameData.timer);
+                gameData.isGameRunning = false;
+
+                // Show appropriate message
+                if (isWin) {
+                    // Show success message
+                    const timeBonus = Math.floor(gameData.timeLeft / 5);
+                    const finalScore = gameData.score + timeBonus;
+
+                    // Replace trash items with success message
+                    trashItemsContainer.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <div class="w-20 h-20 mx-auto bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-4">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Level Selesai!</h4>
+                        <p class="text-gray-600 mb-4">Skor Anda: ${finalScore} (${gameData.score} + ${timeBonus} bonus waktu)</p>
+                        ${gameData.currentLevel < 5 ?
+                            '<p class="text-sm text-gray-500">Lanjut ke level berikutnya?</p>' :
+                            '<p class="text-sm text-gray-500">Anda telah menyelesaikan semua level!</p>'}
+                    </div>
+                `;
+
+                    // Show next level button if not last level
+                    if (gameData.currentLevel < 5) {
+                        const nextLevelBtn = document.createElement('button');
+                        nextLevelBtn.className = 'px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 mx-auto mt-4';
+                        nextLevelBtn.innerHTML = `
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                        </svg>
+                        Level Berikutnya
+                    `;
+                        nextLevelBtn.addEventListener('click', nextLevel);
+                        trashItemsContainer.querySelector('div').appendChild(nextLevelBtn);
+                    }
+                } else {
+                    // Show failure message
+                    trashItemsContainer.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <div class="w-20 h-20 mx-auto bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-4">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Waktu Habis!</h4>
+                        <p class="text-gray-600 mb-4">Anda berhasil memilah ${gameData.score} dari ${gameData.totalItems} item</p>
+                        <p class="text-sm text-gray-500">Coba lagi untuk meningkatkan skor Anda</p>
+                    </div>
+                `;
+                }
+            }
+
+            function resetGame() {
+                resetGameState();
+                startGame();
+            }
+
+            function nextLevel() {
+                if (gameData.currentLevel < 5) {
+                    gameData.currentLevel++;
+                    levelSelect.value = gameData.currentLevel;
+                    startGame();
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

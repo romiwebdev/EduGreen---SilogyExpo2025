@@ -1,0 +1,233 @@
+/* Custom Styles */
+.feature-card {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Animation styles  */
+.animate-fadeIn {
+    animation: fadeIn 1.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* challenge */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+@keyframes correct {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+.animate-correct {
+    animation: correct 0.3s ease-out forwards;
+}
+
+.bin-icon {
+    transition: all 0.2s ease;
+}
+
+.trash-item {
+    transition: all 0.2s ease;
+}
+
+.cursor-grab {
+    cursor: grab;
+}
+
+.cursor-grabbing {
+    cursor: grabbing;
+}
+
+/* Tooltip untuk tempat sampah */
+.bin:hover .bin-icon::after {
+    content: attr(data-type);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+
+/* Game Styles */
+.bin {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.bin:hover {
+    transform: scale(1.05);
+}
+
+.trash-item {
+    transition: all 0.3s ease;
+    cursor: grab;
+}
+
+.trash-item:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.trash-item.dragging {
+    opacity: 0.8;
+    transform: scale(1.1);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.correct {
+    background-color: #48BB78 !important;
+    color: white !important;
+}
+
+.incorrect {
+    background-color: #F56565 !important;
+    color: white !important;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-5px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .trash-item {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+
+    .bin-icon {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .text-3xs {
+        font-size: 0.65rem;
+        line-height: 1rem;
+    }
+}
+
+/* Challenge */
+.animate-pulse {
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.trash-item {
+    transition: all 0.2s ease;
+}
+
+.trash-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.bin-container {
+    transition: all 0.2s ease;
+}
+
+.bin-container:hover {
+    transform: translateY(-2px);
+}
+
+.cursor-grab {
+    cursor: grab;
+}
+
+.cursor-grabbing {
+    cursor: grabbing;
+}
